@@ -1,0 +1,278 @@
+#--------------------------------------------------------------------
+#   Creación de workspaces para el videojuego TOSHI.
+#--------------------------------------------------------------------
+workspace toshi
+beginmodule ngame
+    setdir toshi
+    setfiles { ngame_main ngame_cmds }
+    setheaders { ngame fmod }
+endmodule
+
+beginmodule npartida
+    setdir toshi
+    setfiles { npartida_main npartida_cmds }
+    setheaders { npartida }
+endmodule
+
+beginmodule nworld
+    setdir toshi
+    setfiles { nworld_main nworld_cmds }
+    setheaders { nworld }
+endmodule
+
+beginmodule nmenu
+    setdir toshi
+    setfiles { nmenu_main nmenu_cmds }
+    setheaders { nmenu }
+endmodule
+
+beginmodule nopcion
+    setdir toshi
+    setfiles { nopcion_main nopcion_cmds }
+    setheaders { nopcion }
+endmodule
+
+beginmodule nvideo
+    setdir toshi
+    setfiles { nvideo_main nvideo_cmds }
+    setheaders { nvideo }
+endmodule
+
+beginmodule nentity
+    setdir toshi
+    setfiles { nentity_main nentity_cmds }
+    setheaders { nentity }
+endmodule
+
+beginmodule nnetserver
+    setdir toshi
+    setfiles { nnetserver_main nnetserver_cmds }
+    setheaders { nnet nnetserver nnetpackets }
+endmodule
+
+beginmodule nnetclient
+    setdir toshi
+    setfiles {  nnetclient_main nnetclient_cmds}
+    setheaders { nnet nnetclient nnetpackets }
+endmodule
+
+beginmodule nmapa
+    setdir toshi
+    setfiles { nmapa_main nmapa_cmds AStar}
+    setheaders { nmapa AStar ASIncludes}
+endmodule
+
+beginmodule ndistrito
+    setdir toshi
+    setfiles { ndistrito_main ndistrito_cmds }
+    setheaders { ndistrito }
+endmodule
+
+beginmodule nedificio
+    setdir toshi
+    setfiles { nedificio_main nedificio_cmds }
+    setheaders { nedificio }
+endmodule
+
+beginmodule nayuntamiento
+    setdir toshi
+    setfiles { nayuntamiento_main nayuntamiento_cmds }
+    setheaders { nayuntamiento }
+endmodule
+
+beginmodule nconstruccion
+    setdir toshi
+    setfiles { nconstruccion_main nconstruccion_cmds }
+    setheaders { nconstruccion }
+endmodule
+
+beginmodule ncasaplanos
+    setdir toshi
+    setfiles { ncasaplanos_main ncasaplanos_cmds }
+    setheaders { ncasaplanos }
+endmodule
+
+beginmodule ncasamoneda
+    setdir toshi
+    setfiles { ncasamoneda_main ncasamoneda_cmds }
+    setheaders { ncasamoneda }
+endmodule
+
+beginmodule ncamera
+    setdir toshi
+    setfiles { ncamera_main ncamera_cmds }
+    setheaders { ncamera }
+endmodule
+
+beginmodule nia
+    setdir toshi
+    setfiles { nia_main nia_cmds }
+    setheaders { nia }
+endmodule
+
+beginmodule niajugador
+    setdir toshi
+    setfiles { niajugador_main niajugador_cmds }
+    setheaders { niajugador }
+endmodule
+
+beginmodule niaCLIPS
+    setdir toshi
+    setfiles { niaCLIPS_main niaCLIPS_cmds }
+    setheaders { niaCLIPS }
+endmodule
+
+beginmodule nplano
+    setdir toshi
+    setfiles { nplano_main nplano_cmds }
+    setheaders { nplano }
+endmodule
+
+beginmodule njugador
+    setdir toshi
+    setfiles { njugador_main njugador_cmds }
+    setheaders { njugador }
+endmodule
+
+beginmodule npersonaje
+    setdir toshi
+    setfiles { npersonaje_main npersonaje_cmds }
+    setheaders { npersonaje }
+endmodule
+
+beginmodule ncampesino
+    setdir toshi
+    setfiles { ncampesino_main ncampesino_cmds maquinaestados }
+    setheaders { ncampesino maquinaestados }
+endmodule
+
+beginmodule nshogun
+    setdir toshi
+    setfiles { nshogun_main nshogun_cmds }
+    setheaders { nshogun }
+endmodule
+
+beginmodule nsamurai
+    setdir toshi
+    setfiles { nsamurai_main nsamurai_cmds }
+    setheaders { nsamurai }
+endmodule
+
+beginmodule nkunoichi
+    setdir toshi
+    setfiles { nkunoichi_main nkunoichi_cmds }
+    setheaders { nkunoichi }
+endmodule
+
+beginmodule nmercader
+    setdir toshi
+    setfiles { nmercader_main nmercader_cmds }
+    setheaders { nmercader }
+endmodule
+
+beginmodule nladrona
+    setdir toshi
+    setfiles { nladrona_main nladrona_cmds }
+    setheaders { nladrona }
+endmodule
+
+beginmodule ningeniero
+    setdir toshi
+    setfiles { ningeniero_main ningeniero_cmds }
+    setheaders { ningeniero }
+endmodule
+
+beginmodule nshugenja
+    setdir toshi
+    setfiles { nshugenja_main nshugenja_cmds }
+    setheaders { nshugenja }
+endmodule
+
+beginmodule nmaestro
+    setdir toshi
+    setfiles { nmaestro_main nmaestro_cmds }
+    setheaders { nmaestro }
+endmodule
+
+beginmodule nMLoader
+    setdir toshi
+    setfiles { nMLoader_main nMLoader_cmds }
+    setheaders { nMLoader }
+endmodule
+
+beginmodule nMDLRepository
+    setdir toshi
+    setfiles { nMDLRepository_main nMDLRepository_cmds }
+    setheaders { nMDLRepository }
+endmodule
+
+#--------------------------------------------------------------------
+begintarget juego
+    settype package
+    setmods {
+        ngame
+        npartida
+        nworld        
+        ncamera
+        nmenu
+        nopcion
+        nvideo
+        nentity      
+        nmapa
+	nplano
+	njugador
+	npersonaje        
+        ndistrito
+        nedificio
+        nayuntamiento
+        nconstruccion
+        ncasaplanos
+        ncasamoneda
+	ncampesino
+	nshogun
+	nkunoichi
+	nshugenja
+	nladrona
+	nmaestro
+	nsamurai
+	nmercader
+	ningeniero
+        nia
+        niajugador
+	niaCLIPS	
+        nnetserver
+        nnetclient  	
+	nMLoader
+	nMDLRepository
+    }
+    setdepends { nkernel nnebula ncollide nmap nText nenet }
+    setlibs_win32 {
+        nkernel.lib
+        nnebula.lib
+        nCSprite.lib 
+        HalfLifeMDL.lib 
+        CLIPSLib.lib
+        nenet.lib        
+        fmodvc.lib
+    }
+    setlibs_unix  { nkernel nnebula nCSprite HalfLifeMDL CLIPSLib fmodvc }
+endtarget
+#--------------------------------------------------------------------
+#   Ejecutable del juego
+#--------------------------------------------------------------------
+beginmodule ntoshi
+   setdir toshi
+   setfiles { toshi }
+endmodule
+#--------------------------------------------------------------------
+begintarget toshi
+	settype exe
+	setmods { ntoshi }
+        setdepends { juego }
+	setlibs_win32 { nkernel.lib nnebula.lib }
+	setlibs_unix { nkernel nnebula }
+endtarget
+
+#--------------------------------------------------------------------
+#   EOF
+#--------------------------------------------------------------------

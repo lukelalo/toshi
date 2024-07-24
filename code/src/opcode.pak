@@ -1,0 +1,51 @@
+#-------------------------------------------------------------------------------
+#   opcode.pak
+#   ============
+#   OPCODE 1.3 DLL
+#
+#-------------------------------------------------------------------------------
+beginmodule opcode
+    setdir opcode
+    setfiles {
+      OPC_AABB OPC_Container OPC_HPoint 
+      OPC_IndexedTriangle OPC_Matrix3x3 OPC_Matrix4x4 
+      OPC_OBB OPC_Plane OPC_Point 
+      OPC_Random OPC_Ray OPC_RevisitedRadix
+      OPC_Segment OPC_Triangle OPC_Utils
+      OPC_AABBCollider OPC_AABBTree OPC_BaseModel
+      OPC_BoxPruning OPC_Collider OPC_Common
+      OPC_HybridModel OPC_LSSCollider OPC_MeshInterface
+      OPC_Model OPC_OBBCollider OPC_OptimizedTree
+      OPC_Picking OPC_PlanesCollider OPC_RayCollider
+      OPC_SphereCollider OPC_SweepAndPrune OPC_TreeBuilders
+      OPC_TreeCollider OPC_VolumeCollider Opcode StdAfx
+    }
+    setheaders {
+      OPC_AABB OPC_Axes OPC_BoundingSphere
+      OPC_Container OPC_FPU OPC_HPoint
+      OPC_IndexedTriangle OPC_LSS OPC_Matrix3x3
+      OPC_Matrix4x4 OPC_MemoryMacros OPC_OBB
+      OPC_Pairs OPC_Plane OPC_Point OPC_PreProcessor
+      OPC_Random OPC_Ray OPC_RevisitedRadix OPC_Segment
+      OPC_Triangle OPC_Trilist OPC_Types OPC_Utils
+      OPC_AABBCollider OPC_AABBTree OPC_BaseModel
+      OPC_BoxBoxOverlap OPC_BoxPruning OPC_Collider
+      OPC_Common OPC_HybridModel OPC_IceHook
+      OPC_LSSAABBOverlap OPC_LSSCollider OPC_LSSTriOverlap
+      OPC_MeshInterface OPC_Model OPC_OBBCollider
+      OPC_OptimizedTree OPC_Picking OPC_PlanesAABBOverlap
+      OPC_PlanesCollider OPC_PlanesTriOverlap OPC_RayAABBOverlap
+      OPC_RayCollider OPC_RayTriOverlap OPC_Settings
+      OPC_SphereAABBOverlap OPC_SphereCollider OPC_SphereTriOverlap
+      OPC_SweepAndPrune OPC_TreeBuilders OPC_TreeCollider
+      OPC_TriBoxOverlap OPC_TriTriOverlap OPC_VolumeCollider
+      opcode StdAfx
+    }
+endmodule
+
+#-------------------------------------------------------------------------------
+begintarget opcode
+    settype dll
+    setmods opcode
+endtarget
+#-------------------------------------------------------------------------------

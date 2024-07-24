@@ -1,0 +1,306 @@
+#--------------------------------------------------------------------
+#   wftools.pak
+#   ===========
+#   Wavefront tools package definition file.
+#   (C) 2000 A.Weissflog
+#
+#   10-Mar-00   floh    created
+#   22-Aug-00   floh    + wfradius
+#   24-Oct-00   floh    + removed wfstrip, wflodmerge, wfply,
+#                         wfstrip, wfwedge, wfmeshify, wfradius,
+#                         wfnormalize, wfappend, wfsplit, wfmerge
+#   09-Nov-00   floh    + wfbuildgrid
+#   20-Jul-01   floh    + wfgrasstool
+#   28-Aug-01   floh    + nbmp2ntx image converter
+#   30-Aug-01   floh    + re-added wfsplit
+#   31-Aug-01   floh    + nn3d2nvx mesh file converter
+#   02-Nov-01   floh    + wfcloud tool
+#   01-Jun-02   floh    + nnpktool
+#   13-Jun-02   floh    + nnanim2nax anim file converter
+#--------------------------------------------------------------------
+workspace wftools
+
+#--------------------------------------------------------------------
+beginmodule wfnull
+    setdir tools
+    setfiles { wfnull wftools }
+endmodule
+#--------------------------------------------------------------------
+begintarget wfnull
+    settype exe
+    setmods { wfnull }
+    setlibs_win32  { nkernel.lib }
+    setlibs_unix   { nkernel m }
+    setlibs_macosx { nkernel m }
+endtarget
+
+#--------------------------------------------------------------------
+beginmodule wftrans
+    setdir tools
+    setfiles { wftrans wftools }
+
+endmodule
+#--------------------------------------------------------------------
+begintarget wftrans
+    settype exe
+    setmods { wftrans }
+    setlibs_win32  { nkernel.lib }
+    setlibs_unix   { nkernel m }
+    setlibs_macosx { nkernel m }
+endtarget
+
+#--------------------------------------------------------------------
+beginmodule wfclean
+    setdir tools
+    setfiles { wfclean wftools }
+endmodule
+#--------------------------------------------------------------------
+begintarget wfclean
+    settype exe
+    setmods { wfclean }
+    setlibs_win32  { nkernel.lib }
+    setlibs_unix   { nkernel m }
+    setlibs_macosx { nkernel m }
+endtarget
+
+#--------------------------------------------------------------------
+beginmodule wfflatten
+    setdir tools
+    setfiles { wfflatten wftools }
+endmodule
+#--------------------------------------------------------------------
+begintarget wfflatten
+    settype exe
+    setmods { wfflatten }
+    setlibs_win32  { nkernel.lib }
+    setlibs_unix   { nkernel m }
+    setlibs_macosx { nkernel m }
+endtarget
+
+#--------------------------------------------------------------------
+beginmodule wftriang
+    setdir tools
+    setfiles { wftriang wftools }
+endmodule
+#--------------------------------------------------------------------
+begintarget wftriang
+    settype exe
+    setmods { wftriang }
+    setlibs_win32  { nkernel.lib }
+    setlibs_unix   { nkernel m }
+    setlibs_macosx { nkernel m }
+endtarget
+
+#--------------------------------------------------------------------
+beginmodule wfsmooth
+    setdir tools
+    setfiles { wfsmooth wftools }
+endmodule
+#--------------------------------------------------------------------
+begintarget wfsmooth
+    settype exe
+    setmods { wfsmooth }
+    setlibs_win32  { nkernel.lib }
+    setlibs_unix   { nkernel m }
+    setlibs_macosx { nkernel m }
+endtarget
+
+#--------------------------------------------------------------------
+beginmodule wflod
+    setdir tools
+    setfiles { wflod wftools vector progmesh }
+endmodule
+#--------------------------------------------------------------------
+begintarget wflod
+    settype exe
+    setmods { wflod }
+    setlibs_win32  { nkernel.lib }
+    setlibs_unix   { nkernel m }
+    setlibs_macosx { nkernel m }
+endtarget
+
+#--------------------------------------------------------------------
+beginmodule wfcolor
+    setdir tools
+    setfiles { wfcolor wftools }
+endmodule
+#--------------------------------------------------------------------
+begintarget wfcolor
+    settype exe
+    setmods { wfcolor }
+    setdepends { nkernel nnebula }
+    setlibs_win32  { nkernel.lib nnebula.lib }
+    setlibs_unix   { nkernel nnebula m }
+    setlibs_macosx { nkernel nnebula m }
+endtarget
+
+#--------------------------------------------------------------------
+beginmodule wfplanar
+    setdir tools
+    setfiles { wfplanar wftools }
+endmodule
+#--------------------------------------------------------------------
+begintarget wfplanar
+    settype exe
+    setmods { wfplanar }
+    setlibs_win32  { nkernel.lib }
+    setlibs_unix   { nkernel m }
+    setlibs_macosx { nkernel m }
+endtarget
+#--------------------------------------------------------------------
+beginmodule wfstrip
+    setdir tools
+    setfiles { wfstrip wftools wavefront }
+endmodule
+#--------------------------------------------------------------------
+begintarget wfstrip
+    settype exe
+    setmods { wfstrip }
+    setdepends { nkernel }
+    setlibs_win32  { nkernel.lib }
+    setlibs_unix   { nkernel m }
+    setlibs_macosx { nkernel m }
+endtarget
+#--------------------------------------------------------------------
+beginmodule wfgrasstool
+    setdir tools
+    setfiles { wfgrasstool wftools }
+endmodule
+#--------------------------------------------------------------------
+begintarget wfgrasstool
+    settype exe
+    setmods { wfgrasstool }
+    setdepends { nkernel nnebula }
+    setlibs_win32  { nkernel.lib nnebula.lib }
+    setlibs_unix   { nkernel nnebula m }
+    setlibs_macosx { nkernel nnebula m }
+endtarget
+#--------------------------------------------------------------------
+beginmodule wfwedge
+    setdir tools
+    setfiles { wfwedge wftools }
+endmodule
+#--------------------------------------------------------------------
+begintarget wfwedge
+    settype exe
+    setmods { wfwedge }
+    setlibs_win32  { nkernel.lib }
+    setlibs_unix   { nkernel m }
+    setlibs_macosx { nkernel m }
+endtarget
+#--------------------------------------------------------------------
+beginmodule wfsplit
+    setdir tools
+    setfiles { wfsplit wftools }
+endmodule
+#--------------------------------------------------------------------
+begintarget wfsplit
+    settype exe
+    setmods { wfsplit }
+    setlibs_win32  { nkernel.lib }
+    setlibs_unix   { nkernel m }
+    setlibs_macosx { nkernel m }
+endtarget
+#--------------------------------------------------------------------
+beginmodule wfcloud
+    setdir tools
+    setfiles { wfcloud wftools }
+endmodule
+#--------------------------------------------------------------------
+begintarget wfcloud
+    settype exe
+    setmods { wfcloud }
+    setlibs_win32  { nkernel.lib }
+    setlibs_unix   { nkernel m }
+    setlibs_macosx { nkernel m }
+endtarget
+#--------------------------------------------------------------------
+beginmodule wfcloud2
+    setdir tools
+    setfiles { wfcloud2 wftools }
+endmodule
+#--------------------------------------------------------------------
+begintarget wfcloud2
+    settype exe
+    setmods { wfcloud2 }
+    setdepends { nkernel nnebula opcode }
+    setlibs_win32  { nkernel.lib nnebula.lib opcode.lib }
+    setlibs_unix   { nkernel nnebula opcode m }
+    setlibs_macosx { nkernel nnebula opcode m }
+endtarget
+
+#--------------------------------------------------------------------
+beginmodule nbmp2ntx
+    setdir tools
+    setfiles { nbmp2ntx wftools dither }
+endmodule
+#--------------------------------------------------------------------
+begintarget nbmp2ntx
+    settype exe
+    setmods { nbmp2ntx }
+    setdepends { nkernel nnebula }
+    setlibs_win32  { devil.lib ilu.lib nkernel.lib nnebula.lib }
+    setlibs_unix   { nkernel nnebula m IL ILU }
+    setlibs_macosx { nkernel nnebula m }
+    setframeworks_macosx { IL ILU }
+endtarget
+#--------------------------------------------------------------------
+beginmodule nn3d2nvx
+    setdir tools
+    setfiles { nn3d2nvx wftools }
+endmodule
+#--------------------------------------------------------------------
+begintarget nn3d2nvx
+    settype exe
+    setmods { nn3d2nvx }
+    setdepends { nkernel nnebula }
+    setlibs_win32  { nkernel.lib nnebula.lib }
+    setlibs_unix   { nkernel nnebula m }
+    setlibs_macosx { nkernel nnebula m }
+endtarget
+#--------------------------------------------------------------------
+beginmodule nnpktool
+    setdir tools
+    setfiles { nnpktool wftools }
+endmodule
+#--------------------------------------------------------------------
+begintarget nnpktool
+    settype exe
+    setmods { nnpktool }
+    setdepends { nkernel nnebula }
+    setlibs_win32  { nkernel.lib nnebula.lib }
+    setlibs_unix   { nkernel nnebula m }
+    setlibs_macosx { nkernel nnebula m }
+endtarget
+#--------------------------------------------------------------------
+beginmodule nnanim2nax
+    setdir tools
+    setfiles { nnanim2nax wftools }
+endmodule
+#--------------------------------------------------------------------
+begintarget nnanim2nax
+    settype exe
+    setmods { nnanim2nax }
+    setdepends { nkernel nnebula }
+    setlibs_win32  { nkernel.lib nnebula.lib }
+    setlibs_unix   { nkernel nnebula m }
+    setlibs_macosx { nkernel nnebula m }
+endtarget
+#--------------------------------------------------------------------
+beginmodule wavinfo
+    setdir tools
+    setfiles { wavinfo wftools }
+endmodule
+#--------------------------------------------------------------------
+begintarget wavinfo
+    settype exe
+    setmods { wavinfo }
+    setdepends { nkernel nnebula }
+    setlibs_win32  { nkernel.lib nnebula.lib }
+    setlibs_unix   { nkernel nnebula m }
+    setlibs_macosx { nkernel nnebula m }
+endtarget
+#--------------------------------------------------------------------
+#   EOF
+#--------------------------------------------------------------------
+

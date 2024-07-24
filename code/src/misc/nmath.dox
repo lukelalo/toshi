@@ -1,0 +1,56 @@
+/**
+@defgroup misc_math_server Math Server
+@ingroup NebulaMiscModule
+@brief nMathServer implements a software device, which controls operations on stencils and vector arrays. 
+
+@n
+The server defines a special register set and operations on it, emulating a sort of highlevel FPU. The idea is to concentrate complex operations on vector arrays in a single place to handle special CPU instruction sets (Katmai SSE, 3DNow) with subclassed nMathServers.
+
+
+@par MatrixGet()
+read matrix
+
+@par MatrixIdentity()
+load identity matrix
+
+@par MatrixMult()
+multiply matrix
+
+@par MatrixMultSimple()
+multiply under the assumption that m14,m24,m34=0,m44=1
+
+@par MatrixRotateX()
+Rotate X
+
+@par MatrixRotateY()
+Rotate Y
+
+@par MatrixRotateZ()
+Rotate Z
+
+@par MatrixScale()
+Scaling
+
+@par MatrixSet()
+load matrix
+
+@par MatrixTranslate()
+Translation
+
+@par VecAdd()
+...
+
+@par VecNorm()
+...
+
+@par VecScale()
+...
+
+@par VecSet()
+define vector array
+
+@par VecTransform()
+...
+
+*/
+

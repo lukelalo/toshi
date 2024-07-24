@@ -1,0 +1,36 @@
+#-------------------------------------------------------------------------------
+#   nebulatests.pak
+#   ===============
+#   The Nebula test cases. Run with "nebulatests.exe".
+#
+#   (C) 2001 A.Weissflog
+#-------------------------------------------------------------------------------
+beginmodule nebulatests
+    setdir nebulatests
+    setfiles {
+        nebulatests
+        nchannelservertest
+        narraytest
+        ndirectorytest
+    }
+
+    setheaders {
+        nchannelservertest
+        narraytest
+        ndirectorytest
+    }
+endmodule
+#-------------------------------------------------------------------------------
+begintarget nebulatests
+    settype exe
+    setmods nebulatests
+    setdepends {
+        nkernel
+        nnebula
+    }
+    setlibs_win32  { nkernel.lib nnebula.lib }
+    setlibs_unix   { m nkernel nnebula }
+    setlibs_macosx { m nkernel nnebula }
+endtarget
+#-------------------------------------------------------------------------------
+

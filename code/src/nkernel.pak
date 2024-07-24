@@ -1,0 +1,64 @@
+#--------------------------------------------------------------------
+#   nkernel.pak
+#   Package definition file for Nebula kernel dll.
+#   (C) 2000 A.Weissflog
+#
+#   04-Mar-00   floh    created
+#   01-Feb-01   floh    added setdoxycfg keyword
+#--------------------------------------------------------------------
+beginmodule npersistserver
+	setdir kernel
+	setfiles {
+		npersistserver_beginend
+		npersistserver_load
+		npersistserver_main
+		npersistserver_cmds
+		npersistserver_init
+	}
+	setheaders {
+		npersistserver
+	}
+endmodule
+#----------------------------------------------------------------------
+beginmodule nkernel
+    setdir kernel
+    setfiles {
+        ntime_init ntime_main ntime_cmds 
+        nscript_init nscriptrun 
+        nipcclient nipcserver nipcminiserver nroot_init nroot_main
+        nrootchild nrootsave nroot_cmds nrootref nhardrefserver
+        nkernelserver nclass ncmdproto ncmdprotonative nkernel nthread
+        nenv_init nenv_cmds nmemory npackage nstacktrace
+        narguments nfileserver2_main nfileserver2_cmds 
+        nfile ndirectory nremoteserver_main nremoteserver_init
+        nloghandler nwin32loghandler ndefaultloghandler
+        nfileloghandler
+    }
+    setheaders {
+        ntypes narg nclass nsystem ndebug ncmd
+        nautoref ncmdproto ncmdprotonative ndynautoref nevent
+        ndefdllclass ndir ntimeserver nenv nroot 
+        nref nscriptserver nkernelserver
+        nipcclient nipcserver 
+        nmutex nsocketdefs 
+        nthread nthreadsafelist nhardrefserver nstacktrace
+        nfileserver2 nfile ndirectory narguments
+        nremoteserver nipcminiserver
+        nloghandler nwin32loghandler ndefaultloghandler
+        nfileloghandler
+    }
+    setversion nkernel_ver
+endmodule
+
+
+#----------------------------------------------------------------------
+
+begintarget nkernel
+    settype dll
+    setmods { nkernel npersistserver }
+    setlibs_win32  { kernel32.lib wsock32.lib user32.lib }
+    setlibs_unix   { m dl pthread }
+    setlibs_macosx { m pthread }
+    setframeworks_macosx { Carbon }
+endtarget
+

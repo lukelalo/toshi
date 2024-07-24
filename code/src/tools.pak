@@ -1,0 +1,92 @@
+#--------------------------------------------------------------------
+#   tools.pak
+#   ===========
+#   Nebula tools package definition.
+#   (C) 2000 A.Weissflog
+#
+#   08-Mar-00   floh    created
+#--------------------------------------------------------------------
+beginmodule nremoteshell
+    setdir tools
+    setfiles { nremoteshell }
+endmodule
+#--------------------------------------------------------------------
+beginmodule nsh
+    setdir tools
+    setfiles { nsh }
+endmodule
+#--------------------------------------------------------------------
+beginmodule ipcclientstub
+	setdir kernel
+	setfiles { nipcclient }
+endmodule
+#--------------------------------------------------------------------
+beginmodule gfxserv
+    setdir tools
+    setfiles { gfxserv }
+endmodule
+#--------------------------------------------------------------------
+beginmodule nlaunch
+    setdir tools
+    setfiles { nlaunch }
+endmodule
+#--------------------------------------------------------------------
+#   let nsh depend on everything...
+#--------------------------------------------------------------------
+begintarget nsh
+    settype exe
+    setmods { nsh }
+    setdepends {
+        nkernel
+        nnebula
+        nopengl
+        ndirect3d8
+        nlxinputserver
+        nmacosxinputserver
+        ndsound
+        ncollide
+        nopcode
+        nparticle
+        gfxserv
+        nlaunch
+        tclnebula
+        nebulatests
+        ndinput8
+    }
+    setlibs_win32  { nkernel.lib nnebula.lib }
+    setrsrc_win32 { nebula }
+    setlibs_unix   { nkernel nnebula m }
+    setlibs_macosx { nkernel nnebula m }
+endtarget
+#--------------------------------------------------------------------
+begintarget gfxserv
+    settype exe
+    setmods { gfxserv }
+    setdepends { nkernel nnebula nopengl ndirect3d8 }
+    setlibs_win32  { nkernel.lib nnebula.lib }
+    setrsrc_win32 { nebula }
+    setlibs_unix   { nkernel nnebula m }
+    setlibs_macosx { nkernel nnebula m }
+endtarget
+#--------------------------------------------------------------------
+begintarget nlaunch
+    settype exe
+    setmods { nlaunch }
+    setdepends { nkernel nnebula nopengl ndirect3d8 }
+    setlibs_win32  { nkernel.lib nnebula.lib }
+    setrsrc_win32 { nebula }
+    setlibs_unix   { nkernel nnebula m }
+    setlibs_macosx { nkernel nnebula m }
+endtarget
+#--------------------------------------------------------------------
+begintarget nremoteshell
+    settype exe
+    setmods { nremoteshell ipcclientstub }
+    setdepends {
+        nkernel
+    }
+    setlibs_win32  { wsock32.lib nkernel.lib }
+    setlibs_unix   { nkernel }
+    setlibs_macosx { nkernel }
+endtarget
+#--------------------------------------------------------------------

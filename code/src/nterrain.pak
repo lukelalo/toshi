@@ -1,0 +1,29 @@
+#--------------------------------------------------------------------
+#   nterrain.pak
+#   ============
+#   Nebula's spherical terrain renderer.
+#   (C) 2000 A.Weissflog
+#
+#   08-Jan-01   floh    moved terrain from nnebula.pak to here
+#--------------------------------------------------------------------
+
+#--------------------------------------------------------------------
+beginmodule nterrainnode
+    setdir terrain
+    setfiles { nterrain_init nterrain_main nterrain_render nterrain_map
+               nterrain_wavefront nterrain_cmds quadtree }
+    setheaders nterrainnode
+    setversion nterrain_ver
+endmodule
+#--------------------------------------------------------------------
+begintarget nterrain
+    settype package
+    setmods { nterrainnode }
+    setdepends { nkernel nnebula }
+    setlibs_win32  { nkernel.lib nnebula.lib }
+    setlibs_unix   { nkernel nnebula m }
+    setlibs_macosx { nkernel nnebula m }
+endtarget
+#--------------------------------------------------------------------
+#   EOF
+#--------------------------------------------------------------------

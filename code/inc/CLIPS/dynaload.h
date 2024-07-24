@@ -1,0 +1,50 @@
+//type define the cb functions from CLIPS
+#ifndef	DYNALOAD_DEF
+#define DYNALOAD_DEF
+typedef void	(* FORM_01)(void);
+typedef void	(* FORM_02)(int);
+typedef void	(* FORM_03)(void *);
+typedef void	(* FORM_04)(char *, int, void *);
+typedef void    (* FORM_05)(char *, void *);
+typedef void	(* FORM_06)(void *, char *, DATA_OBJECT *);
+typedef void	(* FORM_07)(DATA_OBJECT*, char *, char *, DATA_OBJECT *);
+typedef void    (* FORM_08)(int, int);
+typedef int 	(* FORM_10)(int);
+typedef int 	(* FORM_11)(char *);
+typedef int 	(* FORM_12)(char *, int, struct expr *);
+typedef int 	(* FORM_13)(void);
+typedef int 	(* FORM_14)(void *);
+typedef int 	(* FORM_15)(char *, char *, int);
+typedef int 	(* FORM_16)(void *, char *, DATA_OBJECT *);
+typedef int 	(* FORM_17)(char *, DATA_OBJECT *);
+typedef int 	(* FORM_18)(char *, void (*)(void), int);
+typedef int 	(* FORM_19)(char *, int, int);
+typedef int 	(* FORM_20)(char *, int, int, void *);
+typedef int 	(* FORM_21)(char *, int, char *);
+typedef int 	(* FORM_22)(void *, char *);
+typedef void * 	(* FORM_30)(void *);
+typedef void * 	(* FORM_31)(unsigned long);
+typedef void * 	(* FORM_32)(char *);
+typedef void * 	(* FORM_33)(void *, void *);
+typedef void * 	(* FORM_34)(void *, char *);
+typedef void * 	(* FORM_35)(void);
+typedef void * 	(* FORM_36)(void *, char *, int);
+typedef void *  (* FORM_37)(long);
+typedef void *  (* FORM_38)(double);
+typedef void *  (* FORM_39)(int);
+typedef void *	(* FORM_3A)(int, void *);
+typedef long 	(* FORM_40)(long);
+typedef long 	(* FORM_41)(void);
+typedef long 	(* FORM_42)(char *, int, EXPRESSION *, int);
+typedef long 	(* FORM_43)(char *);
+typedef long 	(* FORM_44)(long, int);
+typedef long	(* FORM_45)(int);
+typedef char * 	(* FORM_50)(void *);
+typedef char *  (* FORM_51)(int);
+typedef char *  (* FORM_52)(char *);
+typedef unsigned long (* FORM_60)(void);
+typedef int     (* FORM_61)(char *, int, int (*)(void), char *, char *);
+typedef double	(* FORM_70)(int);
+typedef int 	(* ADDROUTER)(char *, int, int (*)(char *), int (*)(char *, char *), int (*)(char *), int (*)(int, char *), int (*)(int));
+typedef int 	(CALLBACK * FORM_100)(int);
+#endif

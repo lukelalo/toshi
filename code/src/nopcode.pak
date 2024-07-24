@@ -1,0 +1,30 @@
+#-------------------------------------------------------------------------------
+#   nopcode.pak
+#   ===========
+#   OPCODE based collision system Nebula extension package.
+#
+#   (C) 2001 A.Weissflog
+#-------------------------------------------------------------------------------
+beginmodule nopcodeserver
+    setdir opcode
+    setfiles {
+        nopcodeserver_init nopcodeserver_main nopcodeshape
+    }
+    setheaders {
+        nopcodeserver nopcodeshape
+    }
+    setversion nopcodeserver_ver
+endmodule
+#-------------------------------------------------------------------------------
+begintarget nopcode
+    settype package
+    setmods {
+        nopcodeserver
+    }
+    setdepends { nkernel nnebula ncollide opcode }
+    setlibs_win32 { nkernel.lib nnebula.lib ncollide.lib opcode.lib }
+    setlibs_unix  { nkernel nnebula ncollide opcode }
+    setlibs_macosx { nkernel nnebula ncollide opcode }
+endtarget
+#-------------------------------------------------------------------------------
+

@@ -1,0 +1,82 @@
+/**
+@defgroup NebulaOpcodeModule Nebula Opcode-based Collision
+@ingroup NebulaCollideModule
+
+@brief The Nebula collision detection system implements polygon-level
+collision by wrapping the Opcode library.
+
+Opcode was written by Pierre Terdiman and can be obtained from
+http://www.codercorner.com/Opcode.htm .
+
+The relevant classes for the opcode-based collision system are:
+
+     - nOpcodeServer
+     - nOpcodeShape
+
+In this documentation, we will only describe variances from the usual collision
+detection system, so this should be read as a supplement to that document.
+
+ - @ref opcode_create_server
+ - @ref opcode_app_objects
+
+*/
+
+/**
+@page opcode_module Nebula Opcode Collision
+
+@section opcode_create_server Create Collision Server
+
+The collision server must be created prior to using the collision
+detection system.  This can be done via C++ or script.
+
+In C++:
+
+@code
+    nCollideServer *collideServer;
+
+    ...
+
+    collideServer = (nCollideServer*)kernelServer->New("nopcodeserver", "/sys/servers/collide");
+@endcode
+
+Or, in TCL:
+
+@verbatim
+    new ncopcodeserver     /sys/servers/collide
+@endverbatim
+
+This is the same as the @c nCollideServer initialization, except that
+it uses the nOpcodeServer class instead.
+
+@section opcode_app_objects Setting Up Application Objects
+
+Once you have the collision system initialized and ready to go, it is
+now time to add in your application's objects.
+
+To do this, you need to do the following things:
+
+   - Create an nCollideShape
+   - Load the collision geometry
+   - Create an nCollideObject
+   - Add the collision object to the nCollideContext
+
+In C++, initializing a vehicle from the previous examples might
+look like:
+
+@code
+    nCollideShape *collideShape = collideServer->NewShape("vehicle");
+
+    collideShape->Load(fileServer, "data:vehicle/collide.n3d");
+
+    nCollideObject *collideObject = collideContext->NewObject();
+    collideObject->SetCollClass(collideServer->QueryCollClass(this->GetName()));
+    collideObject->SetShape(collideShape);
+
+    collideContext->AddObject(collideObject);
+@endcode
+
+The only difference in this case is that the @c collideServer is allocating
+and returning an instance of nOpcodeShape rather than @c nCollideShape. The
+class interfaces are the same and app-level code need not change.
+
+*/

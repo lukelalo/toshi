@@ -1,0 +1,93 @@
+/**
+@page terrain Terrain Implementations
+
+@section overview Overview
+
+    There are two terrain systems within the Nebula Device
+
+     - @ref sphericalterrain
+     - @ref flatterrain
+
+*/
+
+/**
+@page sphericalterrain Spherical Terrain
+
+    Spherical terrain was the original implementation of terrain
+    rendering in the Nebula Device.  It is different from the
+    usual terrain rendering in that it is useful for rendering
+    asteroids or islands floating in the sky.  This is implemented
+    as nTerrainNode and was part of the code from Radon Labs.
+
+*/
+
+/**
+@page flatterrain Flat Terrain
+
+    Flat terrain is the traditional style of terrain and is used
+    for rendering landscapes.  This code was converted from the
+    spherical terrain by Ken Melms and is implemented by the
+    nFlatTerrainNode class.
+
+@section terrain_heightmap_data Heightmap Data
+
+    ...
+
+@section terrain_texturing Texturing
+
+    ...
+
+@section terrain_gridding Gridding Multiple Terrains
+
+    ...
+
+@section terrain_performance_tuning Performance Tuning 
+
+    Terrain performance can be measured in two different ways:
+    loading and rendering.  The flat terrain system in the
+    Nebula Device provides the means to improve the performance
+    of both.
+
+@subsection terrain_performance_loading Loading
+
+    Loading a heightmap and creating the terrain from the
+    heightmap data is an expensive process and makes the terrain
+    consume a lot of memory.  
+
+    To reduce this, the flat terrain supports a custom binary
+    file format for rapid loading of terrain.  This saves all
+    of the pre-processing steps and loads the terrain just as
+    it was when it was saved.
+    
+    nFlatTerrainNode::SaveTree() will create the optimized
+    terrain data file.  This may also be accessed with the
+    @c savetree command via the script interface.
+
+    To load a tree file into an nFlatTerrainNode, use
+    nFlatTerrainNode::SetTreeFile() instead of
+    nFlatTerrainNode::SetHeightMap().  The data will then be
+    loaded during the next frame.  As usual, if you'd like
+    to load it immediately, you may use nFlatTerrainNode::Preload()
+    to do so.
+
+@subsection terrain_performance_rendering Rendering
+
+    Tuning the performance of terrain rendering is a matter of
+    balancing the quality of the appearance with the amount of
+    data that must be kept in memory and processed with each
+    frame.
+
+    The two main ways to improve performance are to reduce
+    the detail or to increase the static error.
+
+    The detail can be altered with nFlatTerrainNode::SetDetail()
+    and alters /something/.
+
+    The static error is an error threshold value used to remove
+    triangles in flat areas of the heightmap.  Altering this value
+    will force a heightmap reload.  It can be modified with
+    nFlatTerrainNode::SetStaticError().
+
+    Both of these are accessible via the scripting interface as
+    @c setdetail and @c setstaticerror respectively.
+*/

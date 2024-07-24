@@ -1,0 +1,28 @@
+#--------------------------------------------------------------------
+#   nlenseflare2.pak
+#   ==========
+#   Renders a lenseflare with 4 flares generating from 1 bitmap
+#
+#   16-Jan-02   whitegold created
+#--------------------------------------------------------------------
+beginmodule nlenseflare2
+    setdir node
+    setfiles { nlenseflare2_init nlenseflare2_main nlenseflare2_cmds }
+    setheaders { nlenseflare2 }
+    setversion nlenseflare2_ver
+endmodule
+
+#--------------------------------------------------------------------
+begintarget nlenseflare2
+    settype package
+    setmods {
+        nlenseflare2
+    }
+    setdepends { nkernel nnebula }
+    setlibs_win32 { nkernel.lib nnebula.lib }
+    setlibs_unix  { nkernel nnebula }
+endtarget
+#--------------------------------------------------------------------
+#   EOF
+#--------------------------------------------------------------------
+

@@ -1,0 +1,30 @@
+# ---
+# $parser:ntclserver$ $class:nshadernode$ $ver:Mon Aug 20 13:18:44 2001$
+# ---
+.preload
+.setrenderpri 1
+.setnumstages 1
+.setcolorop 0 "replace tex prev"
+.setalphaop 0 "replace tex prev"
+.begintunit 0
+.setaddress "clamp" "clamp"
+.setminmagfilter "linear" "linear"
+.settexcoordsrc "uv0"
+.setenabletransform false
+.txyz 0.000000 0.000000 0.000000
+.rxyz 0.000000 0.000000 0.000000
+.sxyz 1.000000 1.000000 1.000000
+.endtunit	
+.setalphaenable true
+.setalphatestenable true
+.setalphablend "srcalpha" "invsrcalpha"
+.setalphafunc "greaterequal"
+.setalpharef $::AlphaRef
+.setcolormaterial "diffuse"
+.setzwriteenable false
+
+/sys/servers/channel.setchannel1f seleccion 0.0
+set ::edfSelect "/game/scene/seleccion"
+
+# ---
+# EOF

@@ -1,0 +1,30 @@
+#--------------------------------------------------------------------
+#   nflatterrain.pak
+#   ==========
+#   Flat terrain rendering
+#
+#   22-Aug-00   whitegold created
+#--------------------------------------------------------------------
+beginmodule nflatterrainnode
+    setdir terrain
+    setfiles { nflatterrain_init nflatterrain_main nflatterrain_render nflatterrain_map
+               nflatterrain_wavefront nflatterrain_cmds flat_quadtree }
+    setheaders { nflatterrainnode flat_quadtree }
+    setversion nflatterrain_ver
+endmodule
+
+#--------------------------------------------------------------------
+begintarget nflatterrain
+    settype package
+    setmods {
+        nflatterrainnode
+    }
+    setdepends { nkernel nnebula }
+    setlibs_win32  { nkernel.lib nnebula.lib }
+    setlibs_unix   { nkernel nnebula }
+    setlibs_macosx { nkernel nnebula }
+endtarget
+#--------------------------------------------------------------------
+#   EOF
+#--------------------------------------------------------------------
+

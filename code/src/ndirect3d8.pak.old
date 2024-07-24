@@ -1,0 +1,64 @@
+#--------------------------------------------------------------------
+#   ndirect3d8.pak
+#   ==============
+#   Direct3D8 class package definition.
+#   (C) 2001 A.Weissflog
+#
+#   24-Jan-01   floh    created
+#   12-May-01   floh    + nd3d8tex_openil.cc, nd3d8tex_old.cc
+#   11-Jul-01   floh    + d3d font rendering sources
+#--------------------------------------------------------------------
+beginmodule nd3d8server
+    setdir gfx
+    setfiles {
+        nd3d8_main nd3d8_resources nd3d8_winproc
+        nd3d8_error nd3d8_display nd3d8_adapter nwinkey
+        nd3d8_device nd3d8_render nd3d8_light nd3d8vertexpool
+        nd3d8_text
+        d3dfont
+    }
+    setheaders { nd3d8server }
+endmodule
+#--------------------------------------------------------------------
+beginmodule nd3d8texture
+    setdir gfx
+    setfiles {
+        nd3d8tex_main nd3d8tex_openil nd3d8tex_old
+        nd3d8tex_dds nd3d8tex_ntx
+    }
+    setheaders { nd3d8texture }
+endmodule
+#--------------------------------------------------------------------
+beginmodule nd3d8indexbuffer
+    setdir gfx
+    setfiles {
+        nd3d8indexbuffer_main
+    }
+    setheaders { nd3d8indexbuffer }
+endmodule
+#--------------------------------------------------------------------
+beginmodule nd3d8pixelshader
+    setdir gfx
+    setfiles {
+        nd3d8pixelshader_main
+    }
+    setheaders { nd3d8pixelshader }
+endmodule
+#--------------------------------------------------------------------
+begintarget ndirect3d8
+    settype package
+    setplatform win32
+    setmods {
+        nd3d8server nd3d8texture nd3d8indexbuffer nd3d8pixelshader
+    }
+    setdepends { nkernel nnebula }
+    setlibs_win32 { devil.lib ilu.lib nkernel.lib nnebula.lib 
+                    kernel32.lib user32.lib gdi32.lib advapi32.lib 
+                    d3d8.lib d3dx8.lib }
+    setrsrc_win32 { nebula }
+endtarget
+
+#--------------------------------------------------------------------
+#   EOF
+#--------------------------------------------------------------------
+

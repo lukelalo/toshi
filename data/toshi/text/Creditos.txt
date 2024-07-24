@@ -1,0 +1,133 @@
+@Core Team
+
+Pablo Javier García
+Carlos Pardo de Santayana
+Jorge Rufo
+
+
+
+@Inteligencia Artificial
+
+Pablo Javier García
+Jorge Rufo
+
+
+
+@Programación de Lógica
+
+Jorge Rufo
+
+
+
+@Control e Interfaz
+
+Pablo Javier García
+
+
+
+@Animación
+
+Carlos Pardo de Santayana
+
+
+
+@Programación de Scripts
+
+Pablo Javier García
+
+
+
+@Diseño de menús
+
+Pablo Javier García
+Carlos Pardo de Santayana
+
+
+
+@Personajes y gráficos 2D
+
+Marcos Arnaiz
+Javier Martínez
+
+
+
+@Historia
+
+Martí Gimenez
+Álvaro Ojeda
+
+
+
+@Música
+
+Agustín Greco
+Carlos Pardo de Santayana
+Barefoot Brothers "Genocide"
+
+
+
+@Voces originales
+
+Marcos Arnaiz
+Agustina Daguerre
+Julio José García
+Ana Pardo de Santayana
+Carlos Pardo de Santayana
+Carlos Vieito
+
+
+
+@Fase QA
+
+Pablo Álvarez
+Julio Bermejo
+César Gallego
+Adrián García
+Alberto García
+Alberto Guijarro
+Enrique Monjas
+Mª Isabel Rodríguez
+
+
+
+@Agradecimientos Especiales
+
+Guillermo Jiménez
+Jaime Sánchez
+Marco Antonio Gómez
+Pedro Pablo Gómez
+Eva Jimenez
+Eva Casado
+Marta Garrido
+Ruth Medina
+La ilógica de Jorge
+La del restaurante Camuñas
+Telepizza
+Pizza Hut
+El ron de 72 grados
+El chino de al lado de casa
+Las patatas fritas
+Pepsi y Coca-Cola
+La teína
+Alien vs Predator
+Fernando Alonso y sus carreritas
+Nadal con su Roland Garrós
+La vecina de enfrente
+
+Y por supuesto...
+
+a los compañeros y profesores 
+del Máster de Videojuegos
+
+
+
+@Dedicado a
+
+Izan Rufo
+Eva y Marta por su paciencia
+Las am"ig"antes de Carlos
+por dejarle tiempo libre
+
+
+
+@Dirección y producción a cargo de

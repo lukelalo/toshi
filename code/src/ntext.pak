@@ -1,0 +1,38 @@
+#--------------------------------------------------------------------
+#   nLabel.pak
+#   ============
+#   Text labels for nebula
+#
+#   Felicidad Ramos Manjavacas
+#--------------------------------------------------------------------
+
+#--------------------------------------------------------------------
+beginmodule nLabel
+    setdir text
+    setfiles { nLabel_main nLabel_cmds }
+    setheaders { nLabel }
+endmodule
+#--------------------------------------------------------------------
+beginmodule nFontServer
+    setdir text
+    setfiles { nFontServer_main nFontServer_cmds }
+    setheaders { nFontServer }
+endmodule
+#--------------------------------------------------------------------
+beginmodule nFont
+    setdir text
+    setfiles { nFont_main nFont_cmds }
+    setheaders { nFont }
+endmodule
+#--------------------------------------------------------------------
+begintarget nText
+    settype package
+    setmods { nLabel nFontServer nFont}
+    setdepends { nkernel nnebula }
+    setlibs_win32 { nkernel.lib nnebula.lib TextureFont.lib }
+    setlibs_unix { nkernel nnebula m TextureFont }
+endtarget
+#--------------------------------------------------------------------
+#   EOF
+#--------------------------------------------------------------------
+

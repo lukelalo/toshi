@@ -1,0 +1,39 @@
+#--------------------------------------------------------------------
+#   ndsound.pak
+#   ============
+#   DirectSound class package definition.
+#   (C) 2000 RadonLabs GmbH -- A.Weissflog
+#
+#   15-May-00   floh    created
+#   17-May-00   floh    added headers
+#--------------------------------------------------------------------
+
+#--------------------------------------------------------------------
+beginmodule ndsoundserver2
+    setdir audio
+    setfiles {
+        ndsoundserver2_main 
+        ndsoundbuffer2
+        ndsoundcluster
+        ndsound_error
+    }
+    setheaders {
+        ndsoundserver2
+        ndsoundcluster
+        ndsoundbuffer2
+    }
+endmodule
+#--------------------------------------------------------------------
+begintarget ndsound
+    settype package
+    setplatform win32
+    setmods {
+        ndsoundserver2
+    }
+    setdepends { nkernel nnebula }
+    setlibs_win32 { nkernel.lib nnebula.lib kernel32.lib dsound.lib dxguid.lib }
+endtarget
+#--------------------------------------------------------------------
+# EOF
+#--------------------------------------------------------------------
+

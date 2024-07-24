@@ -1,0 +1,30 @@
+# ---
+# $parser:ntclserver$ $class:n3dnode$ $ver:Tue Aug 17 13:31:44 1999$
+# ---
+.txyz 0.000000 0.000000 0.000000
+.rxyz 0.000000 0.000000 0.000000
+.sxyz 1.000000 1.000000 1.000000
+
+	new n3dnode light1
+		sel light1
+		new nlightnode light
+			sel light
+			.setattenuation 1 0 0 
+			.settype  point
+			.setcolor 0.1 0.75 1 1
+		sel ..	
+		.txyz -50 50 50
+	sel ..
+
+	new n3dnode light2
+		sel light2
+		new nlightnode light
+			sel light
+			.setattenuation 1 0 0 
+			.settype  point
+			.setcolor 1 0.5 0.1 1
+		sel ..	
+		.txyz 50 50 50
+	sel ..
+
+sel ..

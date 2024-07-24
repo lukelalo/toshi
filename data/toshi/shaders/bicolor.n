@@ -1,0 +1,34 @@
+# ---
+# $parser:ntclserver$ $class:nshadernode$ $ver:Mon Aug 20 13:18:44 2001$
+# ---
+.preload
+.setrenderpri 1
+.setnumstages 2
+.setconst 0 0.800000 0.000000 0.200000 0.800000
+.begintunit 0
+.setaddress "wrap" "wrap"
+.setminmagfilter "linear_mipmap_nearest" "linear_mipmap_nearest"
+.settexcoordsrc "uv0"
+.setenabletransform false
+.endtunit	
+.begintunit 1
+.setaddress "wrap" "wrap"
+.setminmagfilter "linear_mipmap_nearest" "linear_mipmap_nearest"
+.settexcoordsrc "uv0"
+.setenabletransform false
+.endtunit		    
+.setcolorop 0 "add tex prev"
+.setcolorop 1 "add tex prev"        
+.setdiffuse 0.2 0.2 0.2 0.0
+.setemissive 0.0 0.0 0.0 0.0
+.setambient 0.0 0.0 0.0 0.0
+.setlightenable true
+.setalphaenable false
+.setzwriteenable true
+.setfogenable true
+.setcolormaterial "material" 
+.setalphablend "srcalpha" "invsrcalpha"
+.setzfunc "lessequal"	
+
+# ---
+# EOF

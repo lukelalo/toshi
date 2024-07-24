@@ -1,0 +1,42 @@
+#--------------------------------------------------------------------
+#   ncollide.pak
+#   ============
+#   Optional collision system package for Nebula.
+#
+#   07-Jun-00   floh    created
+#   03-Jul-00   floh    + added nrapidserver stuff
+#--------------------------------------------------------------------
+
+#--------------------------------------------------------------------
+beginmodule ncollideserver
+    setdir collide
+    setfiles {
+        ncollserv_main ncollserv_cmds
+        ncollideshape ncollidecontext
+    }
+    setheaders {
+        ncollideserver ncollidecontext ncollideshape ncollideobject
+        ncollidereporthandler
+    }
+endmodule
+#--------------------------------------------------------------------
+beginmodule ncollidenode
+    setdir collide
+    setfiles { ncollnode_main ncollnode_cmds }
+    setheaders ncollidenode
+endmodule
+#--------------------------------------------------------------------
+begintarget ncollide
+    settype package
+    setmods {
+        ncollideserver ncollidenode
+    }
+    setdepends { nkernel nnebula }
+    setlibs_win32  { nkernel.lib nnebula.lib }
+    setlibs_unix   { nkernel nnebula }
+    setlibs_macosx { nkernel nnebula }
+endtarget
+#--------------------------------------------------------------------
+#   EOF
+#--------------------------------------------------------------------
+        

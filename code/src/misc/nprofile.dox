@@ -1,0 +1,6 @@
+/**
+@defgroup misc_profile_server Profile Server
+@ingroup NebulaMiscModule
+@brief The Profiler aids in collecting profiling data. Can be subclassed for specific profilers.
+
+*/

@@ -1,0 +1,129 @@
+/**
+@defgroup NebulaAudioModule Nebula Audio
+
+@brief The Nebula Audio System is a modular system that can be expanded
+to support a variety of hardware interfaces (DX, OAL, OSS). It can also
+be expanded to allow for the playback of a variety of sound file types
+(*.wav, *.ogg). 
+
+Nebula has minimal 3D audio support. Wav files must be 16 bits, mono,
+44 Kilo Hertz. Optimal Bit Rate is unknown.
+
+Currently, only DirectX 8 is supported. Playback of *.wav files is
+natively supported and an add on exists to allow playback of *.ogg
+files. Prior to further expansion, the core system should be evaluated
+and upgraded to insure compliance with current mainstream hardware
+interfaces.
+
+ - @ref audio_overview
+   - @ref audio_comps_objs_as
+   - @ref audio_comps_objs_dx8
+
+ - @ref audio_addtnl
+   - @ref audio_addtnl_example
+   - @ref audio_addtnl_info
+   - @ref audio_addtnl_ref
+   - @ref audio_addtnl_links
+*/
+
+/**
+
+@page audio_overview Audio Overview
+
+@section audio_comps_objs_as Audio Server Component
+The audio server is the primary interface (Base Class) between the Nebula kernel and hardware specific sound APIs. To provide an interface to a given sound hardware API, OSS for example, a class would have to be derived from nAudioServer2.
+
+The audio server is comprised of the following components:
+ - nAudioServer2: Base class.
+ - nListener2: Provides basic listener specific management
+ - nSound2: Describes a sound emitting object.
+ - nSoundAttrs: Appears to be a basic handler for various attributes
+   relating to a single sound.
+ - nSoundCluster: [???]
+ - nStream: Base Class for using a given sound file type (*.wav, *.ogg).
+
+Initialization
+ - ...
+
+Usage Notes
+ - nSound2::minDist appears to set the distance from the sound source
+   where distance based attenuation begins.
+ - nSound Defaults at construction:
+   - Some of these are useful to know. This implies that they don't
+     have to be set if the default values are acceptable for the current
+     project.
+     - isAmbient(false)
+     - inBeginRead(false)
+     - xFade(false)
+     - id(0)
+     - state(FREE)
+     - stream(0)
+     - streamPos(0)
+     - priority(1.0f)
+     - volume(1.0f)
+     - frequency(1.0f)
+     - minDist(50.0)
+     - maxDist(500.0)
+
+@section audio_comps_objs_dx8 DirectX8
+This uses the Microsoft DirectX 8 API for interfacing to DX8 supported hardware.
+
+The DX8 Sound System is comprised of the following components:
+ - nDSoundBuffer2: 
+ - nDSoundChannel: 
+ - nDSoundCluster: 
+ - nDSoundServer2: 
+
+Initialization:
+ - ...
+
+Usage Notes:
+ - nDSoundStream: The nDSoundServer allocates a fixed number of nDSoundChannel objects. nDSoundChannel objects stream data from a wave file into a secondary DirectSound buffer. Normally, nDSoundChannel objects continue to play between frames, however, a new sound may intercept the old one at any time, which leads to a stream exception. The data from the new file will be read immediately at the next possible buffer position (DirectSounds write cursor). The wave file object may be shared among several channels, thats why channels cache the last seek position and will update the wave file objects seek position any time new data needs to be fed from the file.
+
+@section audio_comps_objs_soundfiles File Types:
+ - Ogg - Support provided by nOggStream
+ - Wav - Support provided by nWaveStream
+*/
+
+/**
+@page audio_sequence Sequencing
+
+This section will:
+ - Describe interaction with other components as it runs.
+ - Describe major/critical processes as it runs.
+
+...
+*/
+
+/**
+@page audio_addtnl Additional Information
+
+ - @ref audio_addtnl_example
+ - @ref audio_addtnl_info
+ - @ref audio_addtnl_ref
+ - @ref audio_addtnl_links
+
+@section audio_addtnl_example Production Example:
+...
+
+@section audio_addtnl_info More Information:
+    - Sample on Nebula TWiki:
+      http://nebuladevice.sourceforge.net/cgi-bin/twiki/view/Nebula/AudioExample
+    - Discussion regarding sound system on Nebula TWiki:
+      http://nebuladevice.sourceforge.net/cgi-bin/twiki/view/Nebula/SoundSystem
+
+@section audio_addtnl_ref References:
+    - None yet
+
+@section audio_addtnl_links Links:
+    - OpenAL's main site:
+      http://www.openal.org/
+    - Creative's OpenAL site:
+      http://developer.creative.com/scripts/DC_D&H_Games-Downloads.asp?opt=2
+    - Creative's Dolby-related OpenAL page:
+      http://developer.creative.com/games/dolby.asp
+    - Creative's Open Source site:
+      http://opensource.creative.com/
+    - FMOD pages:
+      http://www.fmod.org/
+*/

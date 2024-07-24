@@ -1,0 +1,87 @@
+#--------------------------------------------------------------------
+#   Creación de workspaces para el laberinto del sultan.
+#--------------------------------------------------------------------
+workspace laberintosultan
+beginmodule ngame
+    setdir laberintosultan
+    setfiles { ngame_main ngame_cmds }
+    setheaders { ngame }
+endmodule
+
+beginmodule nworld
+    setdir laberintosultan
+    setfiles { nworld_main nworld_cmds }
+    setheaders { nworld }
+endmodule
+
+beginmodule nentity
+    setdir laberintosultan
+    setfiles { nentity_main nentity_cmds }
+    setheaders { nentity }
+endmodule
+
+beginmodule ncamera
+    setdir laberintosultan
+    setfiles { ncamera_main ncamera_cmds }
+    setheaders { ncamera }
+endmodule
+
+#--------------------------------------------------------------------
+begintarget juego
+    settype package
+    setmods {
+        ngame 
+        nworld
+        nentity
+        ncamera
+    }
+    setdepends { nkernel nnebula ia ncollide }
+    setlibs_win32 {
+        nkernel.lib
+        nnebula.lib
+    }
+    setlibs_unix  { nkernel nnebula }
+endtarget
+#--------------------------------------------------------------------
+#   Ejecutable del juego
+#--------------------------------------------------------------------
+beginmodule nlaberintosultan
+   setdir laberintosultan
+   setfiles { laberintosultan }
+endmodule
+#--------------------------------------------------------------------
+begintarget laberintosultan
+	settype exe
+	setmods { nlaberintosultan }
+        setdepends { juego ia }
+	setlibs_win32 { nkernel.lib nnebula.lib nCSprite.lib ncollide.lib nmap.lib}
+	setlibs_unix { nkernel nnebula nCSprite ncollide nmap}
+endtarget
+
+#--------------------------------------------------------------------
+# Inteligencia Artificial
+#--------------------------------------------------------------------
+
+beginmodule nia
+    setdir laberintosultan
+    setfiles { nia_main nia_cmds }
+    setheaders { nia }
+endmodule
+
+#--------------------------------------------------------------------
+begintarget ia
+    settype package
+    setmods {
+	nia
+    }
+    setdepends { nkernel nnebula }
+    setlibs_win32 {
+        nkernel.lib
+        nnebula.lib
+    }
+    setlibs_unix  { nkernel nnebula }
+endtarget
+
+#--------------------------------------------------------------------
+#   EOF
+#--------------------------------------------------------------------

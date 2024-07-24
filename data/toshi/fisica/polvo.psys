@@ -1,0 +1,113 @@
+# ---
+# $parser:ntclserver$ $class:n3dnode$ $ver:Fri Jan 19 10:37:41 2001$
+# ---
+# 17-Jan-04 eric created
+# ---------------------------
+
+
+new nipol spin_x
+  sel spin_x
+  .connect rx
+  .addkey1f 0   15
+  .addkey1f 3  -7
+  .addkey1f 5   10
+sel ..
+
+new nipol spin_z
+  sel spin_z
+  .connect rz
+  .addkey1f 0   -18
+  .addkey1f 1.7  17
+  .addkey1f 2.3 -21
+  .addkey1f 2.7  22
+  .addkey1f 3.9 -15
+  .addkey1f 5.2  13
+  .addkey1f 5.8 -21
+sel ..
+
+new nspriterender sr
+  sel sr
+  new npointemitter pe
+    sel pe
+    .setreptype "oneshot"
+    .setchannel "time"
+    .setscale 1.000000
+    .settimes 0.000000 0.000000 0.000000
+    .setlifetime 2.000000
+    .setfreq 20.000000
+    .setspeed 3.000000
+    new nipol speedipol
+      sel speedipol
+      .connect setspeed
+      .addkey1f 0.00 4
+      .addkey1f 0.05 6
+      .addkey1f 0.15 6
+      .addkey1f 0.20 3.5
+      .addkey1f 0.60 4
+    sel ..
+    .setaccel -0.300000 -0.600000 -0.3600000
+    .setinnercone 0.000000
+    .setoutercone 180.000000
+    new nipol coneipol
+      sel coneipol
+      .connect setoutercone
+      .addkey1f 0.00 168
+      .addkey1f 0.05 150
+      .addkey1f 0.15 150
+      .addkey1f 0.20 168
+      .addkey1f 0.60 168
+    sel ..
+  sel ..
+  .setreptype "loop"
+  .setchannel "time"
+  .setscale 1.000000
+  .setstretch false
+  .setspin 0.000000
+  .setspinaccel 0.000000
+  .setemitter "pe"
+  .beginkeys 4
+  .setkey 0  0.400000 0.0  0.600000 0.600000 0.450000  0.500000
+  .setkey 1  1.500000 0.0  0.780000 0.780000 0.620000  0.400000
+  .setkey 2  3.200000 0.0  0.760000 0.760000 0.590000  0.100000
+  .setkey 3  6.800000 0.0  0.740000 0.740000 0.540000  0.000000
+  .endkeys
+sel ..
+
+new nshadernode shd
+  sel shd
+  .setrenderpri 10
+  .setnumstages 1
+  .setcolorop 0 "mul tex prev"
+  # Modificado, antes era nop
+  .setalphaop 0 "mul tex prev"
+  .setconst 0 0.000000 0.000000 0.000000 0.000000
+  .begintunit 0
+  .setaddress "wrap" "wrap"
+  .setminmagfilter "linear_mipmap_nearest" "linear"
+  .settexcoordsrc "uv0"
+  .setenabletransform false
+  .txyz 0.000000 0.000000 0.000000
+  .rxyz 0.000000 0.000000 0.000000
+  .sxyz 1.000000 1.000000 1.000000
+  .endtunit
+  .setdiffuse 0.000000 0.000000 0.000000 0.000000
+  .setemissive 0.000000 0.000000 0.000000 0.000000
+  .setambient 0.000000 0.000000 0.000000 0.000000
+  .setlightenable false
+  .setalphaenable true
+  .setzwriteenable false
+  .setfogenable false
+  #.setalphablend "srccolor" "invsrccolor"
+  .setzfunc "lessequal"
+  .setcullmode "ccw"
+  .setcolormaterial "material"
+sel ..
+
+new ntexarraynode tex
+  sel tex
+  .settexture 0 "textures:polvo.bmp" "textures:particle.bmp"
+sel ..
+
+
+# ---
+# EOF

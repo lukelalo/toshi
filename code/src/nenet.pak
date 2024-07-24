@@ -1,0 +1,43 @@
+#--------------------------------------------------------------------
+#   nenet.epk
+#   ==============
+#   nENet class package.
+#   (C) 2003 Bruce Mitchener, Jr.
+#--------------------------------------------------------------------
+beginmodule nenethost
+    setdir nenet
+    setfiles { 
+        nenethost_main 
+        nenethost_cmds
+    }
+    setheaders { nenethost nenetevent }
+endmodule
+#-------------------------------------------------------------------------------
+beginmodule nenetpeer
+    setdir nenet
+    setfiles {
+        nenetpeer_main
+        nenetpeer_cmds
+    }
+    setheaders { nenetpeer }
+endmodule
+#-------------------------------------------------------------------------------
+beginmodule nenetserver
+    setdir nenet
+    setfiles {
+        nenetserver_main
+        nenetserver_cmds
+    }
+    setheaders { nenetserver }
+endmodule
+#-------------------------------------------------------------------------------
+begintarget nenet
+    settype package
+    setmods {
+        nenethost nenetpeer nenetserver
+    }
+    setdepends { nkernel nkernel nnebula }
+    setlibs_win32  { enet.lib nkernel.lib nnebula.lib ws2_32.lib}
+    setlibs_unix   { enet }
+    setlibs_macosx { enet }
+endtarget

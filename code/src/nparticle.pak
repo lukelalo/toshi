@@ -1,0 +1,89 @@
+#--------------------------------------------------------------------
+#   nparticle.pak
+#   =============
+#   Particle system class package.
+#
+#   01-Nov-00   floh    split off from the Nebula core package
+#   24-Jan-01   floh    removed nvbufemit
+#   01-Feb-01   floh    added doxygen keywords
+#--------------------------------------------------------------------
+
+#--------------------------------------------------------------------
+beginmodule nparticleserver
+    setdir misc
+    setfiles { npserv_main }
+    setheaders { nparticleserver }
+endmodule
+#--------------------------------------------------------------------
+beginmodule npemitter
+    setdir particle
+    setfiles { npemit_main npemit_cmds }
+    setheaders npemitter
+endmodule
+#--------------------------------------------------------------------
+beginmodule npservemitter
+    setdir particle
+    setfiles { npservemit_main }
+    setheaders npservemitter
+endmodule
+#--------------------------------------------------------------------
+beginmodule npointemitter
+    setdir particle
+    setfiles { npointemit_main }
+    setheaders npointemitter
+endmodule
+#--------------------------------------------------------------------
+beginmodule nareaemitter
+    setdir particle
+    setfiles { nareaemit_main nareaemit_cmds}
+    setheaders nareaemitter
+endmodule
+#--------------------------------------------------------------------
+beginmodule nmeshemitter
+    setdir particle
+    setfiles { nmeshemitter_main nmeshemitter_cmds }
+    setheaders nmeshemitter
+endmodule
+#--------------------------------------------------------------------
+beginmodule nstaticmeshemitter
+    setdir particle
+    setfiles { nstaticmeshemitter_main nstaticmeshemitter_cmds }
+    setheaders nstaticmeshemitter
+endmodule
+#--------------------------------------------------------------------
+beginmodule nprender
+    setdir particle
+    setfiles { nprender_main nprender_cmds }
+    setheaders nprender
+endmodule
+#--------------------------------------------------------------------
+beginmodule nspriterender
+    setdir particle
+    setfiles { nsprender_init nsprender_main nsprender_cmds }
+    setheaders nspriterender
+    setversion nsprender_ver
+endmodule
+#--------------------------------------------------------------------
+beginmodule ntrailrender
+    setdir particle
+    setfiles { ntrailrender_main }
+    setheaders ntrailrender
+endmodule
+
+#--------------------------------------------------------------------
+begintarget nparticle
+    settype package
+    setmods {
+        nparticleserver 
+        npemitter npservemitter npointemitter nareaemitter nmeshemitter
+        nstaticmeshemitter nprender nspriterender ntrailrender
+    }
+    setdepends { nkernel nnebula }
+    setlibs_win32  { nkernel.lib nnebula.lib kernel32.lib user32.lib }
+    setlibs_unix   { nkernel nnebula m }
+    setlibs_macosx { nkernel nnebula m }
+endtarget
+#--------------------------------------------------------------------
+#   EOF
+#--------------------------------------------------------------------
+

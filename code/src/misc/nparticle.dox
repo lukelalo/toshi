@@ -1,0 +1,45 @@
+/**
+@defgroup misc_particle_server Particle Server
+@ingroup NebulaMiscModule
+@brief The nParticleServer manages particle emitter objects.
+
+@n
+nVisNode objects may not store any state between frames, because one nVisNode object in a database may be rendered multiple times per frames with different channel sets. Animations are ideally independent of their previous states. Particle systems that are embedded into a 'living' world don't fit into this scheme. Since the world's environment may influence particles by external forces in an unforeseeable way, positions of particles must be stored between frames. The nParticleServer will manage those context blocks for particle emitter objects.
+
+@par @ref nAreaEmitter
+Emit particles from an area
+
+@par @ref nMeshEmitter
+Emit particles from mesh vertices
+
+@par @ref nParticleContext
+Holds a unique collection of nPSystems objects. There should be one nParticleContext for each individual game object that may possibly have particle systems attached. nParticleContexts should be allocated on demand (only objects that really HAVE particle systems attached should allocate them to keep the number of contexts small (anytime a context needs to be looked up a binary search will take place).
+
+@par @ref PEmitter
+Superclass for particle emitters. Particle emitters and rendereres are decoupled to allow better combination. Any nPEmitter subclass can use any nPRender subclass for rendering. Emitters usually create a particle system context in the particle server in order to store particle attributes between frames.
+
+@par @ref nPointEmitter
+Emit particles from point
+
+@par @ref nPRender
+Superclass for particle system renderers  Renders particles emitted by a nPEmitter object.  
+
+@par @ref nPServEmitter
+Superclass for all particle emitter that use particle server particle systems, never used directly
+
+@par nSpriteRender
+Render particles as viewer aligned sprites
+
+@par nStaticMeshEmitter
+A particle "emitter" which simply places a static particle at each vertex of a mesh.
+
+@par nTrailRender
+Render particles connected as triangle strips. as opposed to building a sprite "around" a particle, this renderer connects particles in a triangle "strip" (technically it's a list of independent triangles, may be optimized to a strip later), each particle representing a junction of the strip (depicted by the "pipe" in the ascii diagram below).
+@n
+-------------------------@n
+| / | \ | / | \ | / | \ |@n
+-------------------------@n
+^   ^   ^   ^   ^   ^   ^@n
+
+*/
+

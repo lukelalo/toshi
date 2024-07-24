@@ -1,0 +1,8 @@
+/**
+@defgroup NebulaKernelModule Nebula Kernel
+
+The Nebula Device kernel provides a set of features that are broadly
+useful.  The Nebula Kernel can be used independently of the rest of
+the system.
+
+*/

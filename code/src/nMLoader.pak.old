@@ -1,0 +1,33 @@
+#--------------------------------------------------------------------
+#   nMLoader.pak
+#   ============
+#
+#   Felicidad Ramos Manjavacas
+#--------------------------------------------------------------------
+
+#--------------------------------------------------------------------
+workspace nMLoader
+beginmodule nMLoader
+    setdir MLoader
+    setfiles { nMLoader_main nMLoader_cmds }
+
+    setheaders { nMLoader }
+endmodule
+#--------------------------------------------------------------------
+beginmodule nMDLRepository
+	setdir MLoader
+	setfiles { nMDLRepository_main nMDLRepository_cmds }
+	setheaders { nMDLRepository }
+
+endmodule
+#--------------------------------------------------------------------
+begintarget nMLoader
+    settype package
+    setmods { nMDLRepository nMLoader}
+    setdepends { nkernel nnebula }
+    setlibs_win32 { nkernel.lib nnebula.lib HalfLifeMDL.lib }
+    setlibs_unix { nkernel nnebula m HalfLifeMDL }
+endtarget
+#--------------------------------------------------------------------
+#   EOF
+#--------------------------------------------------------------------

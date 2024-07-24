@@ -1,0 +1,48 @@
+#--------------------------------------------------------------------
+#   nopengl.pak
+#   ===========
+#   OpenGL class package definition.
+#   (C) 2000 A.Weissflog
+#
+#   04-Mar-00   floh    created
+#   17-May-00   floh    added headers
+#   23-Aug-00   floh    + nglpixelshader
+#   08-Sep-00   floh    + nglvertexpool
+#   24-Jan-01   floh    + removed nglvbuffer
+#--------------------------------------------------------------------
+
+#--------------------------------------------------------------------
+beginmodule nglserver
+    setdir gfx
+    setfiles { ngl_main ngl_render ngl_light ngl_text
+               ngl_init ngl_windisp ngl_xdisp ngl_macosxdisp nglvertexpool
+               nwinkey nmackey }
+    setheaders { nglserver nglvertexpool }
+endmodule
+#--------------------------------------------------------------------
+beginmodule ngltexture
+    setdir gfx
+    setfiles { ngltex_main ngltex_old ngltex_openil ngltex_ntx }
+    setheaders ngltexture
+endmodule
+#--------------------------------------------------------------------
+beginmodule nglpixelshader
+    setdir gfx
+    setfiles { nglpixelshader_main }
+    setheaders nglpixelshader
+endmodule
+#--------------------------------------------------------------------
+begintarget nopengl
+    settype package
+    setmods { nglserver ngltexture nglpixelshader }
+    setdepends { nkernel nnebula }
+    setlibs_win32 { devil.lib ilu.lib nkernel.lib nnebula.lib kernel32.lib user32.lib gdi32.lib opengl32.lib glu32.lib }
+    setrsrc_win32 { nebula }
+    setlibs_unix { nkernel nnebula m IL ILU GLU GL Xxf86vm Xmu X11 }
+    setlibs_macosx { nkernel nnebula m }
+    setframeworks_macosx { OpenGL IL ILU CoreFoundation Carbon AGL }
+endtarget
+#--------------------------------------------------------------------
+#   EOF
+#--------------------------------------------------------------------
+

@@ -1,0 +1,138 @@
+# ---
+# $parser:ntclserver$ $class:n3dnode$ $ver:Sat Apr 28 14:22:27 2001$
+# ---
+
+# To get the blind coloring and proper shading, an overlay plane is necessary
+# To get shading right, the overlay plane needs it's own default shader
+
+new n3dnode /usr/scene/overlay
+new noverlayplane /usr/scene/overlay/plane
+new nshadernode /usr/scene/overlay/shader
+
+sel /usr/scene/overlay/shader    
+    .setnumstages 1
+    .setcolorop 0 "mul tex prev" 
+    .begintunit 0
+    .setaddress "wrap" "wrap"
+    .setminmagfilter "nearest" "nearest"
+    .settexcoordsrc "uv0"
+    .setenabletransform false
+    .endtunit
+    .setlightenable false
+    .setdiffuse 1.0 1.0 1.0 1.0
+    .setemissive 0.0 0.0 0.0 0.0
+    .setambient 1.0 1.0 1.0 1.0
+    .setalphaenable true
+    .setzwriteenable false
+    .setzfunc "lessequal"
+    
+# Enabling this enables the "BLIND" color for
+# lenseflares, but also wipes out line drawing
+# since they aren't alpha-able
+#   .setalphaenable(true);
+    .setalphablend "srcalpha" "invsrcalpha"
+
+new n3dnode /usr/scene/lf
+sel /usr/scene/lf
+
+new n3dnode /usr/scene/lf/flare
+sel flare
+	.setminlod 0.000000
+	.txyz 1000.000000 0.000000 0.000000
+	.rxyz 0.000000 0.000000 0.000000
+	.sxyz 1.020000 1.020000 1.020000
+	new nshadernode shad
+		sel shad
+			.setnumstages 1
+			.setcolorop 0 "mul tex prev"
+
+			.begintunit 0
+				.setaddress clamp clamp
+				.setminmagfilter linear_mipmap_nearest linear
+				.settexcoordsrc uv0
+				.setenabletransform false
+			.endtunit
+
+			.setlightenable false
+			.setalphaenable true
+			.setzwriteenable true
+			.setalphablend one one
+			.setfogenable true
+	sel ..
+
+	new ntexarraynode tex
+		sel tex
+		.settexture 0 "glow.bmp" none
+ 	sel ..
+
+	new nlenseflare2 lf
+		sel lf
+
+		.beginflares 12
+		.setblindcolor .9500000 1.0 .8600000 1.00000
+
+		.setflaresizeat 0 0.800000
+		.setflareposat 0 0.000000
+		.setflarecolorat 0 1.000000 .800000 0.500000 0.00001
+
+		.setflaresizeat 1 .400000
+		.setflareposat 1 0.100000
+		.setflarecolorat 1 0.07000 0.07000 0.00300 0.00001
+
+		.setflaresizeat 2 .300000
+		.setflareposat 2 0.300000
+		.setflarecolorat 2 .0700000 0.0700000 .100000 0.00001
+
+		.setflaresizeat 3 0.200000
+		.setflareposat 3 0.500000
+		.setflarecolorat 3 .1000000 0.0700000 .10000 0.00001
+
+		.setflaresizeat 4 0.100000
+		.setflareposat 4 0.700000
+		.setflarecolorat 4 .1000000 0.100000 .0500000 0.00001
+
+		.setflaresizeat 5 0.100000
+		.setflareposat 5 0.200000
+		.setflarecolorat 5 .07000000 0.0700000 .0300000 0.00001
+
+		.setflaresizeat 6 0.200000
+		.setflareposat 6 1.200000
+		.setflarecolorat 6 .070000 0.0700000 .100000 0.00001
+
+		.setflaresizeat 7 0.300000
+		.setflareposat 7 1.400000
+		.setflarecolorat 7 .1000000 0.070000 .100000 0.00001
+
+		.setflaresizeat 8 0.100000
+		.setflareposat 8 1.500000
+		.setflarecolorat 8 .1000000 0.100000 .0500000 0.00001
+
+		.setflaresizeat 9 0.100000
+		.setflareposat 9 1.700000
+		.setflarecolorat 9 .070000 0.07000 .00300000 0.00001
+
+		.setflaresizeat 10 1.20000
+		.setflareposat 10 1.60000
+		.setflarecolorat 10 .07000 0.07000 .100000 0.0000001
+
+		.setflaresizeat 11 1.300000
+		.setflareposat 11 1.400000
+		.setflarecolorat 11 .1000000 0.070000 .100000 0.0000001
+
+		.endflares
+	sel ..
+sel ..
+	new nipol nip
+	sel nip
+	.connect rz
+	.addkey1f 0 -5
+	.addkey1f 10 195
+	.addkey1f 20 -5
+
+	.setscale 10
+
+sel ..
+sel ..
+
+# ---
+# EOF

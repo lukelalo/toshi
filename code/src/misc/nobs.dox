@@ -1,0 +1,9 @@
+/**
+@defgroup misc_observer Observer
+@ingroup NebulaMiscModule
+@brief nObserver implements a system for handling input, controlling the camera and a basic rendering loop.
+
+@n
+@Note Note: nObserver, along with gfxserv can serve as basic examples of the minimum tasks required to create and manage a the render loop in an application using Nebula.
+
+*/

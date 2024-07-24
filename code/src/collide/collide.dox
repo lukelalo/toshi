@@ -1,0 +1,283 @@
+/**
+@defgroup NebulaCollideModule Nebula Collide
+
+    Nebula has a framework for a collision system bundled in the ncollide
+    class package. This framework alone allows for collision detection between
+    moving spheres, but polygon-level collision detection is possible by
+    subclassing two single classes (nCollideShape and  nCollideServer).
+
+    A polygon-level collision detection system has been implemented as
+    a wrapper around the Opcode package.  This is provided within the
+    core Nebula Device distribution.
+
+      - @ref collide_usage
+      - @ref collide_ray_picking
+      - @ref collide_extending
+*/
+
+/**
+@page collide_usage Using Nebula Collide
+
+ - @ref collide_initialization
+ - @ref collide_handling_collisions
+ - @ref collide_shutdown
+
+@section collide_initialization Initialization and Setup
+
+ - @ref collide_create_server
+ - @ref collide_define_classes
+ - @ref collide_define_types
+ - @ref collide_create_context
+ - @ref collide_app_objects
+
+@subsection collide_create_server Create Collision Server
+
+The collision server must be created prior to using the collision
+detection system.  This can be done via C++ or script.
+
+In C++:
+
+@code
+    nCollideServer *collideServer;
+
+    ...
+
+    collideServer = (nCollideServer*)kernelServer->New("ncollideserver", "/sys/servers/collide");
+@endcode
+
+Or, in TCL:
+
+@verbatim
+    new ncollideserver     /sys/servers/collide
+@endverbatim
+
+In our examples above, we've created an instance of the nCollideServer
+rather than the enhanced nOpcodeServer.  The nOpcodeServer is
+discussed separately within the documentation.  However, if we want to
+get any results that are more accurate the just checking bounding spheres
+or perform ray-picking, then a more specialized nCollideServer must be
+used.
+
+@subsection collide_define_classes Define Collision Classes
+
+A collision class doesn't need to correspond to an @c EntityType (or game
+object type).  The class is really like a category type for determining
+collision relationships.  So let's say we have @c "vehicle", @c "powerup"
+and @c "bullet" classes.
+
+@code
+    collideServer->BeginCollClasses();
+    collideServer->AddCollClass("vehicle");
+    collideServer->AddCollClass("powerup");
+    collideServer->AddCollClass("bullet");
+    collideServer->EndCollClasses();
+@endcode
+
+This may also be done in script:
+
+@verbatim
+    sel /sys/servers/collide
+    .begincollclasses
+    .addcollclass "vehicle"
+    .addcollclass "powerup"
+    .addcollclass "bullet"
+    .endcollclasses
+@endverbatim
+
+@subsection collide_define_types Define Collision Types
+
+Collision types define what happens when two classes collide.  They tell
+the collision system whether or not it should report a collision and
+the amount of work that it should do in determining whether or not
+a collision occurred.
+
+Collision types are one of:
+
+    - COLLTYPE_IGNORE: Don't report collisions.
+    - COLLTYPE_QUICK: Do fast %sphere vs. %sphere checks.
+    - COLLTYPE_CONTACT: Report the first contact.
+    - COLLTYPE_EXACT: Report all contacts.
+
+So using the example from the previous section, vehicles could bounce
+off each other and requires exact hit, powerups can be picked up by
+being around the right place, and bullets require exact.  Powerups
+ignore other powerups and bullets.  Bullets ignore other bullets.
+
+@code
+    collideServer->BeginCollTypes()
+    collideServer->AddCollType("vehicle", "vehicle", COLLTYPE_EXACT);
+    collideServer->AddCollType("vehicle", "powerup", COLLTYPE_QUICK);
+    collideServer->AddCollType("vehicle", "bullet", COLLTYPE_EXACT);
+    collideServer->AddCollType("powerup", "powerup", COLLTYPE_IGNORE);
+    collideServer->AddCollType("powerup", "bullet", COLLTYPE_IGNORE);
+    collideServer->AddCollType("bullet", "bullet", COLLTYPE_IGNORE);
+    collideServer->EndCollTypes()
+@endcode
+
+This may also be done in script:
+
+@verbatim
+    sel /sys/servers/collide
+    .begincolltypes
+    .addcolltype "vehicle" "vehicle" "exact"
+    .addcolltype "vehicle" "powerup" "quick"
+    .addcolltype "vehicle" "bullet"  "exact"
+    .addcolltype "powerup" "powerup" "ignore"
+    .addcolltype "powerup" "bullet"  "ignore"
+    .addcolltype "bullet"  "bullet"  "ignore"
+    .endcolltypes
+@endverbatim
+
+@subsection collide_create_context Create a Collision Context
+
+A collision context is a space within which collisions occur.  It is used
+to minimize the set of objects that any given object can collide with (since
+it can only collide with those in the same context).  The default collision
+context can be obtained by:
+
+@code
+    nCollideContext *collideContext;
+
+    ...
+
+    collideContext = collideServer->GetDefaultContext();
+@endcode
+
+@subsection collide_app_objects Setting Up Application Objects
+
+Once you have the collision system initialized and ready to go, it is
+now time to add in your application's objects.
+
+To do this, you need to do the following things:
+
+   - Create an nCollideShape
+   - Load the collision geometry
+   - Create an nCollideObject
+   - Add the collision object to the nCollideContext
+
+In C++, initializing a vehicle from the previous examples might
+look like:
+
+@code
+    nCollideShape *collideShape = collideServer->NewShape("vehicle");
+
+    collideShape->Load(fileServer, "data:vehicle/collide.n3d");
+
+    nCollideObject *collideObject = collideContext->NewObject();
+    collideObject->SetCollClass(collideServer->QueryCollClass(this->GetName()));
+    collideObject->SetShape(collideShape);
+
+    collideContext->AddObject(collideObject);
+@endcode
+
+While simply setting the radius on the nCollideObject is possible with
+nCollideObject::SetRadius(), this is not recommended.  Doing so will
+not provice enough data for the more precise collision types and will
+prevent ray picking from working correctly on that object.
+
+You may use nCollideObject::SetClientData() and
+nCollideObject::GetClientData() to store a pointer to your application
+specific object that is associated with the nCollideObject.  This lets
+you easily determine which object in your application is involved in
+a collision given an nCollideObject from an nCollideReport (see @ref
+collide_handling_collisions).
+
+@section collide_handling_collisions Handling and Responding to Collisions
+
+...
+
+@section collide_shutdown Shutting Down the Collision System
+
+   - @ref collide_removing_objects
+   - @ref collide_system_shutdown
+   
+@subsection collide_removing_objects Removing Collision Objects
+
+When an object is destroyed, it must remove itself from the collision
+system.
+
+@code
+    collideContext->RemObject(collideObject);
+    collideContext->ReleaseObject(collideObject);
+@endcode
+
+@subsection collide_system_shutdown Shutting Down the Collision Server
+
+Shutting down the collision server is a simple task:
+
+@code
+    if (collideContext != NULL)
+        collideContext->Release();
+    collideContext = NULL;
+
+    if (collideSever != NULL)
+        collideServer->Release();
+    collideServer = NULL;
+@endcode
+
+*/
+
+/**
+@page collide_ray_picking Ray Picking with Nebula Collide
+
+@subsection collide_ray_picking_overview Overview
+
+To perform ray picking in the Nebula Device, you need to
+calculate the ray that extends from the point on the screen
+into the 3D space, and then invoke nCollideContext::LineCheck()
+and process the results.
+
+Currently, you must be using the nOpcodeServer and nOpcodeShape
+for ray-picking to work.  This is because nCollideShape::LineCheck()
+is not implemented.  Also, the nOpcodeShape::LineCheck() is
+always polygon-exact rather than allowing for a bounding
+%sphere check.
+
+@subsection collide_ray_picking_sample Sample Code
+
+Sample code for now is the easiest way to explain this.  Given
+the mouse position as mouseX and mouseY, where they are relative
+positions ranging from 0.0f to 1.0f as obtained from the
+nInputServer:
+
+@code
+    float rayLength = 100.0f;
+
+    // These are based upon the angle of the field of view and
+    // set up here for a 90 degree field of view.
+    float frustumScaleX = float(tan(PI/4.0));
+    float frustumScaleY = float(tan(PI/4.0));
+
+    vector3 to;
+    to.x = (rayLength * frustumScaleX * (2.0 * mouseX - 1.0));
+    to.y = (rayLength * frustumScaleY * (1.0 - 2.0 * mouseY));
+    to.z = -rayLength;
+
+    // :TODO: Offset from by a near plane
+    // Create pick ray
+    to = camera->GetTransform() * to;
+    vector3 from(camera->GetTransform().pos_component());
+    line3 line(from, to);
+
+    nCollideReport** pick_report = NULL;
+    int num_picks = collideContext->LineCheck(line, COLLTYPE_EXACT,
+                                              COLLCLASS_ALWAYS_EXACT,
+                                              pick_report);
+
+    if (num_picks > 0)
+    {
+        // pick_report[0] will be the first pick, etc.
+    }
+@endcode
+
+Thanks to Ling Lo for working out the above code.
+
+*/
+
+/**
+@page collide_extending Extending Nebula Collide
+
+...
+
+*/
+
